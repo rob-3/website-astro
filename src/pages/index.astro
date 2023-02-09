@@ -3,7 +3,6 @@ import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
-import robertBoydImg from "../robert-boyd.jpeg";
 import GitHubPortfolio from "../components/GitHubPortfolio.svelte";
 import YouTubeVideo from "../components/YouTubeVideo.svelte";
 import BaseLayout from "../layouts/BaseLayout.astro";
@@ -63,7 +62,7 @@ const reposData = await Promise.all(
 		class="flex flex-wrap justify-center items-center w-fit m-auto my-4"
 	>
 		<img
-			src={robertBoydImg}
+			src="/robert-boyd.jpeg"
 			alt="Robert Boyd"
 			class="inline-block rounded-full w-24 h-24 sm:w-28 sm:h-28"
 		/>
