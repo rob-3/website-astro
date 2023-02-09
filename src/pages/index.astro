@@ -95,7 +95,7 @@ const reposData = await Promise.all(
 					<a class="hover:underline" href="/talks">My Talks</a>
 				</h2>
 				<div class="flex justify-center w-full p-4 sm:mb-4">
-					<YouTubeVideo id={talks[0]} />
+					<YouTubeVideo client:load id={talks[0]} />
 				</div>
 				<a
 					class="flex items-center text-white border border-solid border-black px-4 py-3 talk-link m-4 rounded-lg no-underline bg-black hover:bg-[rgba(0,0,0,0)] hover:text-black transition-all"
