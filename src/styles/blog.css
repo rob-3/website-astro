@@ -1,0 +1,78 @@
+:root {
+	--black: hsl(230 40% 10%);
+}
+
+p {
+	margin: 1em 0;
+}
+
+main {
+	color: var(--black);
+	font-size: 14px;
+}
+
+h1 {
+	font-size: 2em;
+	line-height: 1.5em;
+}
+
+h2 {
+	font-size: 1.5em;
+	line-height: 1.7em;
+}
+
+h3 {
+	font-size: 1.2em;
+	line-height: 1.5em;
+}
+
+blockquote {
+	border-left: 5px solid var(--black);
+	padding: 15px 15px;
+	margin: 1em 0;
+	background-color: hsl(208 36% 88%);
+	border-radius: 0.2rem;
+}
+
+blockquote p {
+	margin: 0;
+}
+
+.astro-code {
+	padding: 15px 20px;
+	background-color: hsl(208 36% 15%) !important;
+	border-radius: 0.2rem;
+}
+
+.astro-code code {
+	padding: 0;
+}
+
+code {
+	padding: 2px 4px;
+	font-family: monospace;
+	background-color: hsl(208 36% 15%);
+	color: #C9D1D9;
+	border-radius: 0.2rem;
+	font-size: 12px;
+}
+
+ol {
+	list-style: decimal;
+	margin-left: 2em;
+}
+
+ul {
+	list-style-type: disc;
+	margin-left: 2em;
+}
+
+@media (min-width: 768px) {
+	main {
+		font-size: 18px;
+	}
+	code {
+		font-size: 18px;
+	}
+}
+
