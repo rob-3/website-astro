@@ -67,6 +67,14 @@ ul {
 	margin-left: 2em;
 }
 
+a:link {
+	color: #3366cc;
+}
+
+a:visited {
+	color: purple;
+}
+
 @media (min-width: 768px) {
 	main {
 		font-size: 18px;
