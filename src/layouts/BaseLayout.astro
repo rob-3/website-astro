@@ -3,6 +3,8 @@ const links = {
 	github: "https://github.com/rob-3",
 	linkedin: "https://linkedin.com/in/robertboyd3",
 };
+
+const { title, description } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -10,6 +12,7 @@ const links = {
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
+		<title>{title}</title>
 	</head>
 	<body>
 		<div class="flex flex-col min-h-screen">
@@ -17,7 +20,7 @@ const links = {
 			<div class="flex-grow"></div>
 			<footer class="m-8 flex justify-center gap-16">
 				<a
-					class="hover:opacity-60 no-underline group"
+					class="hover:opacity-60 no-underline group !text-black"
 					href={links.github}
 				>
 					<div class="flex flex-col items-center">
@@ -34,7 +37,7 @@ const links = {
 					</div>
 				</a>
 				<a
-					class="hover:opacity-60 no-underline group"
+					class="hover:opacity-60 no-underline group !text-black"
 					href={links.linkedin}
 				>
 					<div class="flex flex-col items-center">

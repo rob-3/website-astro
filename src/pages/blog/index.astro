@@ -1,15 +1,46 @@
 ---
-import BaseHead from '../../components/BaseHead.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
-import { getCollection } from 'astro:content';
+import BaseHead from "../../components/BaseHead.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import "../../styles/blog.css";
 
-const posts = (await getCollection('blog')).sort(
+const posts = (await getCollection("blog")).sort(
 	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
 );
 ---
 
+<BaseLayout title="Posts">
+	<div class="flex flex-col items-center m-4 sm:m-6">
+		<main
+			class="w-full md:max-w-3xl px-4 sm:px-8 py-4 bg-slate-100 rounded-lg"
+		>
+			<h1 class="py-2">Posts</h1>
+			<ul class="list-none ml-0">
+				{
+					posts.map((post) => (
+						<li class="flex justify-between">
+							<a href={`/blog/${post.slug}/`}>
+								{post.data.title}
+							</a>
+							<time datetime={post.data.pubDate.toISOString()}>
+								{post.data.pubDate.toLocaleDateString("en-us", {
+									year: "numeric",
+									month: "short",
+									day: "numeric",
+								})}
+							</time>
+						</li>
+					))
+				}
+			</ul>
+		</main>
+	</div>
+</BaseLayout>
+
+<!--
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -57,3 +88,4 @@ const posts = (await getCollection('blog')).sort(
 		<Footer />
 	</body>
 </html>
+-->
