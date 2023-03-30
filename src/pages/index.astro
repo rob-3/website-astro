@@ -6,7 +6,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import GitHubPortfolio from "../components/GitHubPortfolio.svelte";
 import YouTubeVideo from "../components/YouTubeVideo.svelte";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import robertBoydImg from "../robert-boyd.jpeg";
+import robertBoydImg from "../robert-boyd.png";
 import { Image } from "@astrojs/image/components";
 
 const links = {
@@ -69,7 +69,7 @@ const reposData = await Promise.all(
 			alt="Robert Boyd"
 			width={192}
 			height={192}
-			class="inline-block rounded-full w-24 h-24 sm:w-28 sm:h-28"
+			class="inline-block w-24 h-24 sm:w-28 sm:h-28"
 		/>
 		<h1 class="font-thin text-5xl sm:text-6xl p-4">Robert Boyd</h1>
 	</header>
