@@ -26,12 +26,21 @@ h3 {
 	line-height: 1.5em;
 }
 
-blockquote {
+aside {
+	font-size: 0.85em;
 	border-left: 5px solid var(--black);
 	padding: 15px 15px;
 	margin: 1em 0;
 	background-color: hsl(208 36% 88%);
 	border-radius: 0.2rem;
+}
+
+aside p {
+	margin-bottom: 0;
+}
+
+aside code {
+	font-size: 1em;
 }
 
 blockquote p {
@@ -67,12 +76,20 @@ ul {
 	margin-left: 2em;
 }
 
+a:hover {
+	text-decoration: underline;
+}
+
 a:link {
 	color: #3366cc;
 }
 
 a:visited {
 	color: purple;
+}
+
+.footnotes {
+	font-size: 0.85em;
 }
 
 @media (min-width: 768px) {
@@ -83,4 +100,3 @@ a:visited {
 		font-size: 18px;
 	}
 }
-
