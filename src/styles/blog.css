@@ -26,7 +26,7 @@ h3 {
 	line-height: 1.5em;
 }
 
-aside {
+blockquote, aside {
 	font-size: 0.85em;
 	border-left: 5px solid var(--black);
 	padding: 15px 15px;
