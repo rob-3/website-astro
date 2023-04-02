@@ -314,5 +314,3 @@ a data-focused, inheritance-free experience.
 [^inheritance]:
 	That being said, there is a concise way to achieve inheritance-like
 	behavior without classes, which I'll leave as an exercise to the reader :)
-[^stop-writing-classes]:
-	https://www.youtube.com/watch?v=o9pEzgHorH0
