@@ -92,6 +92,11 @@ a:visited {
 	font-size: 0.85em;
 }
 
+figcaption {
+	text-align: center;
+	font-style: italic;
+}
+
 @media (min-width: 768px) {
 	main {
 		font-size: 18px;
