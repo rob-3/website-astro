@@ -90,7 +90,7 @@ which is a good read and a classic work about Git workflows.[^gitflow]
                 Creative Commons Attribution 2.5 Australia License
             </a>
         </p>
-        <p class="m-0 text-base">Pretty diagram == a good Git workflow?</p>
+        <p class="m-0 md:text-base">Pretty diagram == a good Git workflow?</p>
     </figcaption>
 </figure>
 
