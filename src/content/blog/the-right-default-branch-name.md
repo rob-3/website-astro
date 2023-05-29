@@ -99,9 +99,10 @@ That being said, there are two reasons not to use `develop`:
 1. Gitflow has fallen out of favor, for good reasons.
 2. If you really want Gitflow, use `main` for development and `release` for release.
 
-There are good reasons to make the default branch the development branch.
-GitHub pull requests default to merging into the default branch, and the
-default branch is displayed and checked out by, well, default.
+Putting `develop` as the default branch isn't entirely wrong. There are good
+reasons to make the default branch the development branch. GitHub pull requests
+default to merging into the default branch, and the default branch is displayed
+and checked out by, well, default.
 
 However, you should just use `main` for the default branch. The development
 branch is likely the most important and active branch in your repository.
