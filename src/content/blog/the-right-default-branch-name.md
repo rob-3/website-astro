@@ -20,7 +20,7 @@ in recent times, [some](https://groups.google.com/a/chromium.org/g/chromium-dev/
 major projects started changing their default branch name
 to avoid the master-slave terminology.
 
-![Records](/pexels-robin-mcpherson-908965.jpeg)
+![Records](../../assets/pexels-robin-mcpherson-908965.jpeg)
 
 <aside>
 I personally always thought Git was referring to a master copy (as in

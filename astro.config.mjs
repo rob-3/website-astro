@@ -9,10 +9,12 @@ import svelte from "@astrojs/svelte";
 import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
-import image from "@astrojs/image";
-
-// https://astro.build/config
 export default defineConfig({
+  experimental: {
+    assets: true
+  },
   site: 'https://example.com',
-  integrations: [mdx(), sitemap(), svelte(), tailwind(), image()]
+  integrations: [mdx(), sitemap(), svelte(), tailwind({
+    config: { applyBaseStyles: false }
+  })]
 });
