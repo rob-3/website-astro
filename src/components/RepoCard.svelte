@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { GitHubRepositoryData } from "../components/GitHubRepositoryData";
 	import { fade } from "svelte/transition";
-	import colors from "../components/colors";
+	import { colors } from "../consts";
 	export let repo: GitHubRepositoryData;
 	$: ({
 		fork,

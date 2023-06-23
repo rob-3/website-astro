@@ -1,4 +1,4 @@
-import type colors from "../components/colors";
+import type { colors } from "../consts";
 
 export interface GitHubRepositoryData {
 	fork: boolean;
