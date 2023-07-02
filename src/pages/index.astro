@@ -1,8 +1,4 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import GitHubPortfolio from "../components/GitHubPortfolio.svelte";
 import YouTubeVideo from "../components/YouTubeVideo.svelte";
 import BaseLayout from "../layouts/BaseLayout.astro";
@@ -80,12 +76,10 @@ const reposData = await Promise.all(
 				class="flex flex-col items-center max-w-[min(70em,100%)] flex-grow basis-[55em] mt-2 sm:mt-6 mb-6"
 			>
 				<h2 class="m-2 sm:m-4 font-thin text-3xl">
-					<a class="hover:underline" href={links.github}
-						>My Projects</a
-					>
+					<a class="hover:underline" href={links.github}>My Projects</a>
 				</h2>
 				<div class="m-2 sm:m-4">
-					<GitHubPortfolio repos={reposData} />
+					<GitHubPortfolio client:load repos={reposData} />
 				</div>
 			</section>
 			<section
@@ -98,7 +92,7 @@ const reposData = await Promise.all(
 					<YouTubeVideo client:load id={talks[0]} />
 				</div>
 				<a
-					class="flex items-center text-white border border-solid border-black px-4 py-3 talk-link m-4 rounded-lg no-underline bg-black hover:bg-[rgba(0,0,0,0)] hover:text-black transition-all"
+					class="flex items-center text-white border border-solid border-black px-4 py-3 talk-link m-4 rounded no-underline bg-black hover:bg-[rgba(0,0,0,0)] hover:text-black transition-all"
 					href="/talks"
 					>All Talks
 					<svg

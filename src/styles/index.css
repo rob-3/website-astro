@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+	background-image:
+		radial-gradient(49% 81% at 20% 42%, yellow -14%, transparent 30%),
+		radial-gradient(49% 81% at 38% 37%, orange 0%, transparent 37%),
+		radial-gradient(29% 21% at 76% 17%, white -26%, transparent 68%),
+		radial-gradient(63% calc(21vh + 20%) at 65% 67%, red -11%, transparent 100%),
+		radial-gradient(53% 45% at 3% 92%, #40daca 0%, transparent 70%),
+		radial-gradient(49% 81% at 45% 40%, #7B03FF3D 0%, #073AFF00 100%),
+		radial-gradient(113% 91% at 17% -2%, #FF000000 1%, #005CFF87 99%),
+		radial-gradient(142% 91% at 50% 70%, #FF000000 1%, #30FFFFBA 99%),
+		radial-gradient(142% 77% at -6% 74%, #FF000000 1%, #00C9FFFF 99%),
+		radial-gradient(142% 91% at 111% 84%, #0006FFFF 0%, #00B9FFFF 100%);
+}

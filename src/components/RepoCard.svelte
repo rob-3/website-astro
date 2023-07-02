@@ -2,6 +2,7 @@
 	import type { GitHubRepositoryData } from "../components/GitHubRepositoryData";
 	import { fade } from "svelte/transition";
 	import { colors } from "../consts";
+	import { onMount } from "svelte";
 	export let repo: GitHubRepositoryData;
 	$: ({
 		fork,
@@ -13,10 +14,59 @@
 		language,
 		stargazers_count,
 	} = repo);
+
+	let ref: HTMLDivElement;
+	/*
+	onMount(() => {
+		document.addEventListener("mousemove", event => {
+			const { clientX, clientY } = event;
+			const { left, right, top, bottom } = ref.getBoundingClientRect();
+			const x = (left + right) / 2;
+			const y = (top + bottom) / 2;
+			const scale = 50;
+			if (clientX - x > 0) {
+				if (clientY - y > 0) {
+					ref.style.boxShadow = `-${(clientX - x) / scale}px -${(clientY - y) / 100}px 10px -2px rgb(71 85 105)`;
+				} else {
+					ref.style.boxShadow = `-${(clientX - x) / scale}px ${(
+						y - clientY
+					) / scale}px 10px -2px rgb(71 85 105)`;
+				}
+			} else {
+				if (clientY - y > 0) {
+					ref.style.boxShadow = `${(x - clientX) / scale}px -${(clientY - y) / 100}px 10px -2px rgb(71 85 105)`;
+				} else {
+					ref.style.boxShadow = `${(x - clientX) / scale}px ${(
+						y - clientY
+					) / scale}px 10px -3px rgb(71 85 105)`;
+				}
+			}
+		});
+	});
+	*/
 </script>
 
-<div in:fade>
-	<a href={html_url}>{name}</a>
+<div
+	bind:this={ref}
+	in:fade
+	class="drop-shadow-lg flex flex-col h-full p-4 rounded-sm border border-slate-300 bg-slate-100"
+>
+	<div>
+		<svg
+			class="inline-block"
+			style="fill: #586069;"
+			viewBox="0 0 16 16"
+			version="1.1"
+			width="16"
+			height="16"
+			aria-hidden="true"
+			><path
+				fill-rule="evenodd"
+				d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"
+			/></svg
+		>
+		<a class="text-blue-700 font-medium" href={html_url}>{name}</a>
+	</div>
 	{#if fork}
 		<div class="text-xs text-[#586069]">
 			Forked from <a href={source.html_url}>{source.full_name}</a>
@@ -27,7 +77,7 @@
 	</div>
 	<div
 		style="font-size: 12px; color: #586069;"
-		class="flex items-center gap-2"
+		class="mt-auto flex items-center gap-2"
 	>
 		{#if language}
 			<span class="flex items-center gap-1">
@@ -82,5 +132,9 @@
 <style>
 	a:hover {
 		text-decoration: underline;
+	}
+
+	.card-shadow {
+		box-shadow: 6px 6px;
 	}
 </style>

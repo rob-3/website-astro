@@ -6,6 +6,7 @@
 {#if shouldLoad}
 	<iframe
 		src={`https://www.youtube-nocookie.com/embed/${id}?autoplay=1`}
+		class="rounded-sm"
 		title="YouTube video player"
 		frameborder="0"
 		allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -13,12 +14,12 @@
 	/>
 {:else}
 	<div
-		class="w-[min(560px,100%)] aspect-video bg-cover bg-center group hover:cursor-pointer"
+		class="w-[min(560px,100%)] aspect-video bg-cover bg-center group hover:cursor-pointer rounded-sm"
 		style={`background-image: url("https://img.youtube.com/vi/${id}/0.jpg");`}
 		on:click={() => (shouldLoad = true)}
 	>
-		<div class="bg-gray-900/20 h-full grid place-items-center">
-			<div class="absolute w-4 h-4 bg-gray-100" />
+		<div class="h-full grid place-items-center">
+			<div class="absolute w-4 h-4 bg-gray-100 group-hover:bg-gray-200" />
 			<svg
 				class="w-14 fill-red-500 group-hover:fill-red-600 z-10"
 				xmlns="http://www.w3.org/2000/svg"
