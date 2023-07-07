@@ -4,6 +4,7 @@ import YouTubeVideo from "../components/YouTubeVideo.svelte";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import robertBoydImg from "../robert-boyd.png";
 import { Image } from "astro:assets";
+import { TALKS } from "../consts";
 
 const links = {
 	github: "https://github.com/rob-3",
@@ -17,27 +18,6 @@ const repos = [
 	"knighthacks/hackathon-2021-frontend",
 	"knighthacks/club-site-2021",
 	"rob-3/website",
-];
-
-const talks = [
-	"hg1SvZ42Mes",
-	"cPLErKHGtpQ",
-	"GBRm-D-AMxA",
-	"6Bqf_FLqYb8",
-	"-iYu8kC3rOk",
-	"-dyalS9_s3o",
-	"LvVBj34F6po",
-	"d8O_XSC_XjY",
-	"pTpATrMsl2c",
-	"zlNgsWwWzyQ",
-	"ubYTlZh3Ry0",
-	"EzhLcpd0fNY",
-	"S0QEEZ5VdF0",
-	"EXhgeNg8Ezk",
-	"rhnITQ7AM88",
-	"ix3Q6XevlA0",
-	"A2D1Cg-ZrpU",
-	"z1yfZrlYRUU",
 ];
 
 const description =
@@ -89,7 +69,7 @@ const reposData = await Promise.all(
 					<a class="hover:underline" href="/talks">My Talks</a>
 				</h2>
 				<div class="flex justify-center w-full p-4 sm:mb-4">
-					<YouTubeVideo client:load id={talks[0]} />
+					<YouTubeVideo client:load id={TALKS[0]} />
 				</div>
 				<a
 					class="flex items-center text-white border border-solid border-black px-4 py-3 talk-link m-4 rounded no-underline bg-black hover:bg-[rgba(0,0,0,0)] hover:text-black transition-all"

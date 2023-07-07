@@ -2405,4 +2405,23 @@ export const colors = {
         "url": "https://github.com/trending?l=Zimpl"
     }
 } as const;
-
+export const TALKS = [
+	"hg1SvZ42Mes",
+	"cPLErKHGtpQ",
+	"GBRm-D-AMxA",
+	"6Bqf_FLqYb8",
+	"-iYu8kC3rOk",
+	"-dyalS9_s3o",
+	"LvVBj34F6po",
+	"d8O_XSC_XjY",
+	"pTpATrMsl2c",
+	"zlNgsWwWzyQ",
+	"ubYTlZh3Ry0",
+	"EzhLcpd0fNY",
+	"S0QEEZ5VdF0",
+	"EXhgeNg8Ezk",
+	"rhnITQ7AM88",
+	"ix3Q6XevlA0",
+	"A2D1Cg-ZrpU",
+	"z1yfZrlYRUU",
+];
