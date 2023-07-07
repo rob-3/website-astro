@@ -1,10 +1,6 @@
 ---
 import "../styles/index.css";
-
-const links = {
-	github: "https://github.com/rob-3",
-	linkedin: "https://linkedin.com/in/robertboyd3",
-};
+import { LINKS } from "../consts";
 
 const { title, description } = Astro.props;
 ---
@@ -23,7 +19,7 @@ const { title, description } = Astro.props;
 			<footer class="m-8 flex justify-center gap-16">
 				<a
 					class="hover:opacity-60 no-underline group !text-black"
-					href={links.github}
+					href={LINKS.github}
 				>
 					<div class="flex flex-col items-center">
 						<svg
@@ -40,7 +36,7 @@ const { title, description } = Astro.props;
 				</a>
 				<a
 					class="hover:opacity-60 no-underline group !text-black"
-					href={links.linkedin}
+					href={LINKS.linkedin}
 				>
 					<div class="flex flex-col items-center">
 						<svg

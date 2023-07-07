@@ -2425,3 +2425,7 @@ export const TALKS = [
 	"A2D1Cg-ZrpU",
 	"z1yfZrlYRUU",
 ];
+export const LINKS = {
+	github: "https://github.com/rob-3",
+	linkedin: "https://linkedin.com/in/robertboyd3",
+} as const;
