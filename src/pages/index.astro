@@ -4,21 +4,12 @@ import YouTubeVideo from "../components/YouTubeVideo.svelte";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import robertBoydImg from "../robert-boyd.png";
 import { Image } from "astro:assets";
-import { TALKS, LINKS } from "../consts";
-
-const repos = [
-	"rob-3/steel-lang",
-	"poop-team/daydream",
-	"knighthacks/scythe",
-	"knighthacks/hackathon-2021-frontend",
-	"knighthacks/club-site-2021",
-	"rob-3/website",
-];
+import { TALKS, LINKS, REPOS } from "../consts";
 
 const description =
 	"A curious student and software developer at the University of Central Florida passionate about programming languages and the web";
 const reposData = await Promise.all(
-	repos.map(async (repo) => {
+	REPOS.map(async (repo) => {
 		const data = await fetch(`https://api.github.com/repos/${repo}`, {
 			headers: {
 				authorization: `token ${import.meta.env.GITHUB_API_TOKEN}`,

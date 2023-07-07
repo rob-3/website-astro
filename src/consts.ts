@@ -2429,3 +2429,12 @@ export const LINKS = {
 	github: "https://github.com/rob-3",
 	linkedin: "https://linkedin.com/in/robertboyd3",
 } as const;
+export const REPOS = [
+	"rob-3/steel-lang",
+	"poop-team/daydream",
+	"knighthacks/scythe",
+	"knighthacks/hackathon-2021-frontend",
+	"knighthacks/club-site-2021",
+	"rob-3/website",
+];
+
