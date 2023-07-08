@@ -14,11 +14,11 @@ const posts = (await getCollection("blog")).sort(
 		<main
 			class="w-full md:max-w-3xl px-4 sm:px-8 py-2 sm:py-6 bg-slate-100 rounded"
 		>
-			<h1>Posts</h1>
+			<h1 class="py-2 sm:py-4">Posts</h1>
 			<ul class="list-none ml-0">
 				{
 					posts.map((post) => (
-						<li class="flex flex-nowrap justify-between">
+						<li class="flex flex-nowrap justify-between my-2">
 							<a class="inline-block whitespace-nowrap overflow-hidden" href={`/blog/${post.slug}/`}>
 								{post.data.title}
 							</a>
