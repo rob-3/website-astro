@@ -12,17 +12,17 @@ const posts = (await getCollection("blog")).sort(
 <BaseLayout title="Posts">
 	<div class="flex flex-col items-center m-4 sm:m-6">
 		<main
-			class="w-full md:max-w-3xl px-4 sm:px-8 py-6 bg-slate-100 rounded"
+			class="w-full md:max-w-3xl px-4 sm:px-8 py-2 sm:py-6 bg-slate-100 rounded"
 		>
 			<h1>Posts</h1>
 			<ul class="list-none ml-0">
 				{
 					posts.map((post) => (
-						<li class="flex justify-between">
-							<a href={`/blog/${post.slug}/`}>
+						<li class="flex flex-nowrap justify-between">
+							<a class="inline-block whitespace-nowrap overflow-hidden" href={`/blog/${post.slug}/`}>
 								{post.data.title}
 							</a>
-							<time datetime={post.data.pubDate.toISOString()}>
+							<time class="flex-shrink-0 ml-4" datetime={post.data.pubDate.toISOString()}>
 								{post.data.pubDate.toLocaleDateString("en-us", {
 									year: "numeric",
 									month: "short",
