@@ -1,8 +1,8 @@
 // Place any global data in this file.
 // You can import this data from anywhere in your site by using the `import` keyword.
 
-export const SITE_TITLE = 'My personal website.';
-export const SITE_DESCRIPTION = 'Welcome to my website!';
+export const SITE_TITLE = "robertboyd.dev";
+export const SITE_DESCRIPTION = "Welcome to the personal website of Robert Boyd. I'm a software engineer interested in compilers and the web!";
 export const colors = {
     "1C Enterprise": {
         "color": "#814CCC",
