@@ -18,8 +18,8 @@ const posts = (await getCollection("blog")).sort(
 			<ul class="list-none ml-0">
 				{
 					posts.map((post) => (
-						<li class="flex flex-nowrap justify-between my-2">
-							<a class="inline-block whitespace-nowrap overflow-hidden" href={`/blog/${post.slug}/`}>
+						<li class="flex flex-nowrap items-center justify-between my-2">
+							<a href={`/blog/${post.slug}/`}>
 								{post.data.title}
 							</a>
 							<time class="flex-shrink-0 ml-4" datetime={post.data.pubDate.toISOString()}>
