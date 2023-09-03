@@ -130,12 +130,9 @@ see other projects using `master`, `trunk`, `develop`, or otherwise. There are
 many ways to use Git, but using `main` as the default, development branch
 should be the bog standard approach that should require reason for deviation.
 
-[^hehe]:
-    :)
-[^git-version]:
-    As of 2.40.0
-[^tree]:
-    See [git branch](https://git-scm.com/docs/git-branch), [git worktree](https://git-scm.com/docs/git-worktree)
+[^hehe]: :)
+[^git-version]: As of 2.40.0
+[^tree]: See [git branch](https://git-scm.com/docs/git-branch), [git worktree](https://git-scm.com/docs/git-worktree)
 [^gitflow]:
     That being said, many people (including me) don't recommend Gitflow anymore
     and favor trunk-based workflows and short-lived branches, especially for

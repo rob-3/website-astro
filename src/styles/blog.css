@@ -3,109 +3,110 @@
 @tailwind utilities;
 
 :root {
-	--black: hsl(230 40% 10%);
+  --black: hsl(230 40% 10%);
 }
 
 p {
-	margin: 1em 0;
+  margin: 1em 0;
 }
 
 main {
-	color: var(--black);
-	font-size: 14px;
+  color: var(--black);
+  font-size: 14px;
 }
 
 h1 {
-	font-size: 2em;
-	line-height: 1.5em;
+  font-size: 2em;
+  line-height: 1.5em;
 }
 
 h2 {
-	font-size: 1.5em;
-	line-height: 1.7em;
+  font-size: 1.5em;
+  line-height: 1.7em;
 }
 
 h3 {
-	font-size: 1.2em;
-	line-height: 1.5em;
+  font-size: 1.2em;
+  line-height: 1.5em;
 }
 
-blockquote, aside {
-	font-size: 0.85em;
-	border-left: 5px solid var(--black);
-	padding: 15px 15px;
-	margin: 1em 0;
-	background-color: hsl(208 36% 88%);
-	border-radius: 0.2rem;
+blockquote,
+aside {
+  font-size: 0.85em;
+  border-left: 5px solid var(--black);
+  padding: 15px 15px;
+  margin: 1em 0;
+  background-color: hsl(208 36% 88%);
+  border-radius: 0.2rem;
 }
 
 aside p {
-	margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 aside code {
-	font-size: 1em;
+  font-size: 1em;
 }
 
 blockquote p {
-	margin: 0;
+  margin: 0;
 }
 
 .astro-code {
-	padding: 15px 20px;
-	background-color: hsl(208 36% 15%) !important;
-	border-radius: 0.2rem;
+  padding: 15px 20px;
+  background-color: hsl(208 36% 15%) !important;
+  border-radius: 0.2rem;
 }
 
 .astro-code code {
-	padding: 0;
+  padding: 0;
 }
 
 code {
-	padding: 2px 4px;
-	font-family: monospace;
-	background-color: hsl(208 36% 15%);
-	color: #C9D1D9;
-	border-radius: 0.2rem;
-	font-size: 12px;
+  padding: 2px 4px;
+  font-family: monospace;
+  background-color: hsl(208 36% 15%);
+  color: #c9d1d9;
+  border-radius: 0.2rem;
+  font-size: 12px;
 }
 
 ol {
-	list-style: decimal;
-	margin-left: 2em;
+  list-style: decimal;
+  margin-left: 2em;
 }
 
 ul {
-	list-style-type: disc;
-	margin-left: 2em;
+  list-style-type: disc;
+  margin-left: 2em;
 }
 
 a:hover {
-	text-decoration: underline;
+  text-decoration: underline;
 }
 
 a:link {
-	color: #3366cc;
+  color: #3366cc;
 }
 
 a:visited {
-	color: purple;
+  color: purple;
 }
 
 .footnotes {
-	font-size: 0.85em;
+  font-size: 0.85em;
 }
 
 figcaption {
-	text-align: center;
-	font-style: italic;
+  text-align: center;
+  font-style: italic;
 }
 
 @media (min-width: 768px) {
-	main {
-		font-size: 18px;
-	}
-	code {
-		font-size: 18px;
-	}
+  main {
+    font-size: 18px;
+  }
+  code {
+    font-size: 18px;
+  }
 }

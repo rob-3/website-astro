@@ -17,11 +17,11 @@ literal:
 ```js
 // Look ma, no `class`!
 const elephant = {
-	name: "Elliot",
-	age: 5,
-}
-elephant.name // "Elliot"
-elephant.age // 5
+  name: "Elliot",
+  age: 5,
+};
+elephant.name; // "Elliot"
+elephant.age; // 5
 ```
 
 <aside>
@@ -34,13 +34,13 @@ But how can we add a function to our object? One way is to use an anonymous func
 
 ```js
 const elephant = {
-	name: "Elliot",
-	age: 5,
-	sayHello: function() {
-		console.log(`${this.name}: <deafening trumpet>`)
-	},
-}
-elephant.sayHello() // "Elliot: <deafening trumpet>"
+  name: "Elliot",
+  age: 5,
+  sayHello: function () {
+    console.log(`${this.name}: <deafening trumpet>`);
+  },
+};
+elephant.sayHello(); // "Elliot: <deafening trumpet>"
 ```
 
 But this syntax has been largely replaced with the more concise "method
@@ -48,13 +48,13 @@ shorthand" that has the same meaning.[^on-methods]
 
 ```js
 const elephant = {
-	name: "Elliot",
-	age: 5,
-	sayHello() {
-		console.log(`${this.name}: <deafening trumpet>`)
-	},
-}
-elephant.sayHello() // "Elliot: <deafening trumpet>"
+  name: "Elliot",
+  age: 5,
+  sayHello() {
+    console.log(`${this.name}: <deafening trumpet>`);
+  },
+};
+elephant.sayHello(); // "Elliot: <deafening trumpet>"
 ```
 
 <aside>
@@ -64,25 +64,24 @@ is not the object). There are cases where this behavior is useful, but never
 for member functions.
 </aside>
 
-
 Now, this technique is fine for one-off config objects and similar cases, but
 it gets old quickly when you need to create a bunch of objects.
 
 ```js
 const elephant = {
-	name: "Elliot",
-	age: 5,
-	sayHello() {
-		console.log(`${this.name}: <deafening trumpet>`)
-	},
-}
+  name: "Elliot",
+  age: 5,
+  sayHello() {
+    console.log(`${this.name}: <deafening trumpet>`);
+  },
+};
 const elephant2 = {
-	name: "Esteban",
-	age: 2,
-	sayHello() {
-		console.log(`${this.name}: <deafening trumpet>`)
-	},
-}
+  name: "Esteban",
+  age: 2,
+  sayHello() {
+    console.log(`${this.name}: <deafening trumpet>`);
+  },
+};
 ```
 
 Usually, this situation is when people reach for a `class`. For just fields,
@@ -93,18 +92,18 @@ freeing the function from the object.
 
 ```js
 const sayHello = (elephant) => {
-	console.log(`${elephant.name}: <deafening trumpet>`)
-}
+  console.log(`${elephant.name}: <deafening trumpet>`);
+};
 const elephant = {
-	name: "Elliot",
-	age: 5,
-}
+  name: "Elliot",
+  age: 5,
+};
 const elephant2 = {
-	name: "Esteban",
-	age: 2,
-}
-sayHello(elephant)
-sayHello(elephant2)
+  name: "Esteban",
+  age: 2,
+};
+sayHello(elephant);
+sayHello(elephant2);
 ```
 
 Some might denigrate such an approach as "procedural" or "C-style programming",
@@ -118,16 +117,16 @@ object.
 
 ```js
 const Elephant = (name, age) => ({
-	name,
-	age,
-	sayHello() {
-		console.log(`${this.name}: <deafening trumpet>`)
-	},
-})
-const elephant = Elephant("Elliot", 5)
-const elephant2 = Elephant("Esteban", 2)
-elephant.sayHello()
-elephant2.sayHello()
+  name,
+  age,
+  sayHello() {
+    console.log(`${this.name}: <deafening trumpet>`);
+  },
+});
+const elephant = Elephant("Elliot", 5);
+const elephant2 = Elephant("Esteban", 2);
+elephant.sayHello();
+elephant2.sayHello();
 ```
 
 <aside>
@@ -143,6 +142,7 @@ a <code>return</code> statement; this is useful if you need to do some
 computation before you can construct the object or if you need to conditionally
 construct different objects. For basic cases, the above is the most concise
 approach.
+
 </aside>
 
 One advantage of this approach is that it plays better with completions in most
@@ -158,13 +158,13 @@ making 100+ copies of:
 
 ```js
 function sayHello() {
-	console.log(`${this.name}: <deafening trumpet>`)
+  console.log(`${this.name}: <deafening trumpet>`);
 }
 const Elephant = (name, age) => ({
-	name,
-	age,
-	sayHello,
-})
+  name,
+  age,
+  sayHello,
+});
 ```
 
 This gives equivalent performance to a class in Chrome and Safari, and better
@@ -185,19 +185,19 @@ with different functions.
 
 ```js
 const Elephant = (name, age) => ({
-	name,
-	age,
-	sayHello() {
-		console.log(`${this.name}: <deafening trumpet>`)
-	},
-})
+  name,
+  age,
+  sayHello() {
+    console.log(`${this.name}: <deafening trumpet>`);
+  },
+});
 const Chicken = (name, age) => ({
-	name,
-	age,
-	sayHello() {
-		console.log(`${this.name}: bawk!`)
-	},
-})
+  name,
+  age,
+  sayHello() {
+    console.log(`${this.name}: bawk!`);
+  },
+});
 ```
 
 You can also consider using a type field and pursuing a pattern matching
@@ -205,34 +205,34 @@ approach:
 
 ```js
 const Elephant = (name, age) => ({
-	type: "elephant",
-	name,
-	age,
-})
+  type: "elephant",
+  name,
+  age,
+});
 const Chicken = (name, age) => ({
-	type: "chicken",
-	name,
-	age,
-})
+  type: "chicken",
+  name,
+  age,
+});
 const sayHello = (animal) => {
-	switch (animal.type) {
-		case "chicken": 
-			console.log(`${this.name}: bawk!`)
-			break
-		case "elephant":
-			console.log(`${this.name}: <deafening trumpet>`)
-			break
-		default:
-			throw Error(`sayHello() not implemented for type ${animal.type}`)
-	}
-}
+  switch (animal.type) {
+    case "chicken":
+      console.log(`${this.name}: bawk!`);
+      break;
+    case "elephant":
+      console.log(`${this.name}: <deafening trumpet>`);
+      break;
+    default:
+      throw Error(`sayHello() not implemented for type ${animal.type}`);
+  }
+};
 ```
 
 The trade-off between these designs deserves a post of its own, but more and
-more I find myself reaching for this second approach. It is better for 
+more I find myself reaching for this second approach. It is better for
 [serialization](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify)
 because the type of the data lives in a field instead of hidden in dynamic dispatch.
-If you leave functions out of your data you can also do a 
+If you leave functions out of your data you can also do a
 [deep copy](https://developer.mozilla.org/en-US/docs/Web/API/structuredClone)
 more easily.
 
@@ -256,7 +256,7 @@ a trap is worse than no option.[^inheritance]
 
 While there are now [private fields](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_class_fields)
 in JavaScript, [only 68% of developers even know about them, and less than half
-of *those* developers use them](https://2022.stateofjs.com/en-US/features/). If
+of _those_ developers use them](https://2022.stateofjs.com/en-US/features/). If
 you don't have a specific use case, I don't think you need them.
 
 The benefits of encapsulation are generally overstated, but on the other hand,
@@ -274,12 +274,12 @@ often than not, I believe public fields are more useful and easier to debug.
 
 > Perfection is achieved, not when there is nothing more to add, but when there
 > is nothing left to take away.
-> 
+>
 > ― Antoine de Saint-Exupéry, Airman's Odyssey
 
 Class-free JavaScript is less capable than a `class`. Everything I've
 mentioned above can be achieved in a `class`, with perhaps slightly more
-code. *That's not a bug -- that's a feature.*
+code. _That's not a bug -- that's a feature._
 
 I'm not against classes. I'm against their misuse. By defaulting to not using
 a `class`, I force myself to write simpler and better code. I've written
@@ -290,27 +290,28 @@ Try your next project without `class`, and see if you don't enjoy
 a data-focused, inheritance-free experience.
 
 [^on-methods]:
-	The use of the word "method" has always been a frustrating subtlety to me.
-	It is typically intended to clarify whether a function is a member of
-	a class; in practice, however, this distinction is often lost or not
-	useful. In Java, for example, every function must live in some class, so
-	does Java only have methods? Lua has calling syntax that allows you to
-	effectively treat a function like a method. Should the name change based on
-	the syntax used? Most software engineers seem to use them interchangeably,
-	so I try to prefer function as the more universal and easily-understood
-	term.
+    The use of the word "method" has always been a frustrating subtlety to me.
+    It is typically intended to clarify whether a function is a member of
+    a class; in practice, however, this distinction is often lost or not
+    useful. In Java, for example, every function must live in some class, so
+    does Java only have methods? Lua has calling syntax that allows you to
+    effectively treat a function like a method. Should the name change based on
+    the syntax used? Most software engineers seem to use them interchangeably,
+    so I try to prefer function as the more universal and easily-understood
+    term.
+
 [^dynamic-dispatch]:
-	I suspect this is due to dynamic dispatch. Dynamic dispatch is how
-	JavaScript and other languages implement class polymorphism - the ability
-	of different objects to have different behavior on a method call. In
-	a free function, there is always one path of code execution. Method calls,
-	however, could dispatch to different blocks of code based on the class
-	type. If you don't actually need this, you may be paying a performance
-	penalty. On my machine, V8 (Chrome) and JSC (Safari) seem to be able to
-	optimize the dispatch to have negligible overhead in simple cases, but
-	in SpiderMonkey (Firefox), the free function is the best performer.
-[^benchmarking]:
-	https://jsbench.me/telfizii6g
+    I suspect this is due to dynamic dispatch. Dynamic dispatch is how
+    JavaScript and other languages implement class polymorphism - the ability
+    of different objects to have different behavior on a method call. In
+    a free function, there is always one path of code execution. Method calls,
+    however, could dispatch to different blocks of code based on the class
+    type. If you don't actually need this, you may be paying a performance
+    penalty. On my machine, V8 (Chrome) and JSC (Safari) seem to be able to
+    optimize the dispatch to have negligible overhead in simple cases, but
+    in SpiderMonkey (Firefox), the free function is the best performer.
+
+[^benchmarking]: https://jsbench.me/telfizii6g
 [^inheritance]:
-	That being said, there is a concise way to achieve inheritance-like
-	behavior without classes, which I'll leave as an exercise to the reader :)
+    That being said, there is a concise way to achieve inheritance-like
+    behavior without classes, which I'll leave as an exercise to the reader :)
