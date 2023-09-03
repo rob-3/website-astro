@@ -1,6 +1,7 @@
 ---
 import "../styles/index.css";
 import { LINKS } from "../consts";
+import { ViewTransitions } from "astro:transitions";
 
 const { title, description } = Astro.props;
 ---
@@ -11,12 +12,13 @@ const { title, description } = Astro.props;
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
 		<title>{title}</title>
+		<ViewTransitions />
 	</head>
 	<body>
 		<div class="flex flex-col min-h-screen">
 			<slot />
 			<div class="flex-grow"></div>
-			<footer class="m-8 flex justify-center gap-16">
+			<footer class="m-8 flex justify-center gap-16" transition:name="footer">
 				<a
 					class="hover:opacity-60 no-underline group !text-black"
 					href={LINKS.github}
