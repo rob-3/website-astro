@@ -17,8 +17,7 @@ const { title, description } = Astro.props;
 	<body>
 		<div class="flex flex-col min-h-screen">
 			<slot />
-			<div class="flex-grow"></div>
-			<footer class="mb-8 flex justify-center gap-16" transition:name="footer">
+			<footer class="flex-grow items-end mb-8 flex justify-center gap-16">
 				<a
 					class="hover:opacity-60 no-underline group !text-black"
 					href={LINKS.github}
