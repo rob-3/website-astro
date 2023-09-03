@@ -10,11 +10,8 @@ import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
-  experimental: {
-    assets: true
-  },
   site: 'https://example.com',
   integrations: [mdx(), sitemap(), svelte(), tailwind({
-    config: { applyBaseStyles: false }
+    applyBaseStyles: false,
   })]
 });
