@@ -7,7 +7,7 @@ const { title, description } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="en" class="min-h-screen bg-[#A3C3D9] bg-cover bg-center bg-fixed bg-[url('/svg-path-mobile.svg')] lg:bg-[url('/svg-path.svg')]">
+<html lang="en" class="bg-[#A3C3D9] bg-cover bg-center bg-fixed bg-[url('/svg-path-mobile.svg')] lg:bg-[url('/svg-path.svg')]">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
@@ -15,7 +15,7 @@ const { title, description } = Astro.props;
 		<ViewTransitions />
 	</head>
 	<body>
-		<div class="flex flex-col min-h-screen">
+		<div class="flex flex-col min-h-[100dvh]">
 			<slot />
 			<footer class="flex-grow items-end mb-8 flex justify-center gap-16">
 				<a
