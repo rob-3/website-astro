@@ -8,96 +8,94 @@ import { TALKS, LINKS, REPOS } from "../consts";
 import type { GitHubRepositoryData } from "../components/GitHubRepositoryData";
 
 const description =
-	"A curious student and software developer at the University of Central Florida passionate about programming languages and the web";
+  "A curious student and software developer at the University of Central Florida passionate about programming languages and the web";
 const reposData = await Promise.all(
-	REPOS.map(async (repo) => {
-		const data = await fetch(`https://api.github.com/repos/${repo}`, {
-			headers: {
-				authorization: `token ${import.meta.env.GITHUB_API_TOKEN}`,
-				"user-agent": "node.js",
-			},
-		}).then((rsp) => rsp.json());
-		return data;
-	})
+  REPOS.map(async (repo) => {
+    const data = await fetch(`https://api.github.com/repos/${repo}`, {
+      headers: {
+        authorization: `token ${import.meta.env.GITHUB_API_TOKEN}`,
+        "user-agent": "node.js",
+      },
+    }).then((rsp) => rsp.json());
+    return data;
+  }),
 );
 reposData.push({
-	name: "twilight-forest",
-	full_name: "rob-3/twilight-forest",
-	description: "A VR game built with Unity for the Quest 2. Unrelated to the Minecraft mod.",
-	html_url: "https://dev.azure.com/rob-3/_git/twilight-forest",
-	language: "C#",
-	stargazers_count: 0,
-	forks: 0,
-	fork: false,
-	source: null as unknown as GitHubRepositoryData,
-})
+  name: "twilight-forest",
+  full_name: "rob-3/twilight-forest",
+  description:
+    "A VR game built with Unity for the Quest 2. Unrelated to the Minecraft mod.",
+  html_url: "https://dev.azure.com/rob-3/_git/twilight-forest",
+  language: "C#",
+  stargazers_count: 0,
+  forks: 0,
+  fork: false,
+  source: null as unknown as GitHubRepositoryData,
+});
 ---
 
 <BaseLayout title="Robert Boyd">
-	<header
-		class="flex flex-wrap justify-center items-center w-fit m-auto my-4"
-	>
-
-		<Image
-			src={robertBoydImg}
-			alt="Robert Boyd"
-			width={192}
-			height={192}
-			class="inline-block w-24 h-24 sm:w-28 sm:h-28"
-		/>
-		<h1 class="font-extralight text-5xl sm:text-6xl p-4">Robert Boyd</h1>
-	</header>
-	<main class="max-w-max m-auto flex flex-col items-center">
-		<p class="m-2 text-center">{description}</p>
-		<a
-			class="flex items-center text-white border border-solid border-black px-4 py-3 talk-link m-4 rounded no-underline bg-black hover:bg-[rgba(0,0,0,0)] hover:text-black transition-all"
-			href="/blog"
-			>Read my blog!
-			<svg
-				class="ml-1 h-4 fill-current"
-				xmlns="http://www.w3.org/2000/svg"
-				viewBox="0 0 512 512"
-				><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
-				<path
-					d="M470.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 256 265.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160zm-352 160l160-160c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L210.7 256 73.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0z"
-				></path>
-			</svg>
-		</a>
-		<div class="flex flex-wrap justify-center sm:mt-4">
-			<section
-				class="flex flex-col items-center max-w-[min(70em,100%)] flex-grow basis-[55em] mt-2 mb-6"
-				>
-				<h2 class="m-2 sm:m-4 font-extralight text-3xl">
-					<a class="hover:underline" href={LINKS.github}>My Projects</a>
-				</h2>
-				<div class="m-2 sm:m-4">
-					<GitHubPortfolio client:load repos={reposData} />
-				</div>
-			</section>
-			<section
-				class="flex flex-col items-center flex-grow basis-[650px] mt-2 mb-6"
-				>
-				<h2 class="m-2 sm:m-4 font-extralight text-3xl">
-					<a class="hover:underline" href="/talks">My Talks</a>
-				</h2>
-				<div class="flex justify-center w-full p-4 sm:mb-4">
-					<YouTubeVideo client:load id={TALKS[0]} />
-				</div>
-				<a
-					class="flex items-center text-white border border-solid border-black px-4 py-3 talk-link m-4 rounded no-underline bg-black hover:bg-[rgba(0,0,0,0)] hover:text-black transition-all"
-					href="/talks"
-					>All Talks
-					<svg
-						class="ml-1 h-4 fill-current"
-						xmlns="http://www.w3.org/2000/svg"
-						viewBox="0 0 512 512"
-						><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
-						<path
-							d="M470.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 256 265.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160zm-352 160l160-160c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L210.7 256 73.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0z"
-						></path>
-					</svg>
-				</a>
-			</section>
-		</div>
-	</main>
+  <header class="flex flex-wrap justify-center items-center w-fit m-auto my-4">
+    <Image
+      src={robertBoydImg}
+      alt="Robert Boyd"
+      width={192}
+      height={192}
+      class="inline-block w-24 h-24 sm:w-28 sm:h-28"
+    />
+    <h1 class="font-extralight text-5xl sm:text-6xl p-4">Robert Boyd</h1>
+  </header>
+  <main class="max-w-max m-auto flex flex-col items-center">
+    <p class="m-2 text-center">{description}</p>
+    <a
+      class="flex items-center text-white border border-solid border-black px-4 py-3 talk-link m-4 rounded no-underline bg-black hover:bg-[rgba(0,0,0,0)] hover:text-black transition-all"
+      href="/blog"
+      >Read my blog!
+      <svg
+        class="ml-1 h-4 fill-current"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 512 512"
+        ><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
+        <path
+          d="M470.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 256 265.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160zm-352 160l160-160c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L210.7 256 73.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0z"
+        ></path>
+      </svg>
+    </a>
+    <div class="flex flex-wrap justify-center sm:mt-4">
+      <section
+        class="flex flex-col items-center max-w-[min(70em,100%)] flex-grow basis-[55em] mt-2 mb-6"
+      >
+        <h2 class="m-2 sm:m-4 font-extralight text-3xl">
+          <a class="hover:underline" href={LINKS.github}>My Projects</a>
+        </h2>
+        <div class="m-2 sm:m-4">
+          <GitHubPortfolio client:load repos={reposData} />
+        </div>
+      </section>
+      <section
+        class="flex flex-col items-center flex-grow basis-[650px] mt-2 mb-6"
+      >
+        <h2 class="m-2 sm:m-4 font-extralight text-3xl">
+          <a class="hover:underline" href="/talks">My Talks</a>
+        </h2>
+        <div class="flex justify-center w-full p-4 sm:mb-4">
+          <YouTubeVideo client:load id={TALKS[0]} />
+        </div>
+        <a
+          class="flex items-center text-white border border-solid border-black px-4 py-3 talk-link m-4 rounded no-underline bg-black hover:bg-[rgba(0,0,0,0)] hover:text-black transition-all"
+          href="/talks"
+          >All Talks
+          <svg
+            class="ml-1 h-4 fill-current"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 512 512"
+            ><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
+            <path
+              d="M470.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 256 265.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160zm-352 160l160-160c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L210.7 256 73.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0z"
+            ></path>
+          </svg>
+        </a>
+      </section>
+    </div>
+  </main>
 </BaseLayout>
