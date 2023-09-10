@@ -2436,4 +2436,5 @@ export const REPOS = [
   "rob-3/morgan-and-morgan-2023",
   "rob-3/codereview",
   "rob-3/website-astro",
+  "rob-3/resume",
 ];

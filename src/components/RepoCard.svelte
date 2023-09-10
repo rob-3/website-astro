@@ -46,7 +46,7 @@
 	*/
 </script>
 
-<a href={html_url} class="no-underline">
+<a href={name === "resume" ? "/resume.pdf" : html_url} class="no-underline">
   <div
     bind:this={ref}
     in:fade
