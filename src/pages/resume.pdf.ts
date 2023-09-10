@@ -11,11 +11,9 @@ export const GET: APIRoute = async () => {
       },
     },
   );
-  const resumePdf = Buffer.from(await resumeResponse.arrayBuffer()).toString(
-    "binary",
-  );
-  return {
-    body: resumePdf,
-    encoding: "binary",
-  };
+  return new Response(await resumeResponse.arrayBuffer(), {
+    headers: {
+      "content-type": "application/pdf",
+    },
+  });
 };
