@@ -5,6 +5,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import robertBoydImg from "../robert-boyd.png";
 import { Image } from "astro:assets";
 import { TALKS, LINKS, REPOS } from "../consts";
+import type { GitHubRepositoryData } from "../components/GitHubRepositoryData";
 
 const description =
 	"A curious student and software developer at the University of Central Florida passionate about programming languages and the web";
@@ -19,6 +20,17 @@ const reposData = await Promise.all(
 		return data;
 	})
 );
+reposData.push({
+	name: "twilight-forest",
+	full_name: "rob-3/twilight-forest",
+	description: "A VR game built with Unity for the Quest 2. Unrelated to the Minecraft mod.",
+	html_url: "https://dev.azure.com/rob-3/_git/twilight-forest",
+	language: "C#",
+	stargazers_count: 0,
+	forks: 0,
+	fork: false,
+	source: null as unknown as GitHubRepositoryData,
+})
 ---
 
 <BaseLayout title="Robert Boyd">
