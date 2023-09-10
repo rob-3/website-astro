@@ -1,6 +1,6 @@
 import type { APIRoute } from "astro";
 
-export const get: APIRoute = async () => {
+export const GET: APIRoute = async () => {
   const resumeResponse = await fetch(
     "https://api.github.com/repos/rob-3/resume/contents/resume.pdf",
     {
