@@ -42,11 +42,43 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 				}
 				<slot />
 			</article>
-			<div class="flex justify-between mt-8">
-				<a href="/blog">← All Posts</a>
-				<span class="hidden sm:visible">Copyright © 2023 Robert Boyd III</span>
-				<a href="mailto:blog@robertboyd.dev">Email me!</a>
+			<div class="my-grid grid grid-cols-3 gap-2 sm:gap-8 sm:grid-cols-[auto,1fr,auto] grid-rows-2 sm:grid-rows-1 mt-6 items-center">
+				<div class="my-back">
+					<a href="/blog">← All Posts</a>
+				</div>
+				<form class="my-form flex justify-center gap-2">
+					<input class="px-4 py-2 flex-grow rounded border border-gray-200" type="email" pattern=".+@.+" />
+					<button class="text-white border border-solid border-black px-4 py-2 talk-link rounded bg-black hover:bg-[rgba(0,0,0,0)] hover:text-black transition-all" type="submit">Subscribe</button>
+				</form>
+				<div class="my-copyright text-center sm:hidden">
+					© Robert Boyd III
+				</div>
+				<div class="my-email text-right">
+					<a href="mailto:blog@robertboyd.dev">Email me!</a>
+				</div>
 			</div>
 		</main>
 	</div>
 </BaseLayout>
+
+<style>
+@media (max-width: 639px) {
+	.my-form {
+		grid-area: top;
+	}
+	.my-back {
+		grid-area: left;
+	}
+	.my-email {
+		grid-area: right;
+	}
+	.my-copyright {
+		grid-area: center;
+	}
+	.my-grid {
+		grid-template-areas:
+			"top top top"
+			"left center right";
+	}
+}
+</style>
