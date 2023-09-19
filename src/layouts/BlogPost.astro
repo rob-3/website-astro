@@ -42,26 +42,42 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 				}
 				<slot />
 			</article>
-			<div class="my-grid grid grid-cols-3 gap-2 sm:gap-8 sm:grid-cols-[auto,1fr,auto] grid-rows-2 sm:grid-rows-1 mt-6 items-center">
-				<div class="my-back">
+			<div class="mt-6 items-center">
+				<form class="my-grid">
+					<div class="my-back">
 					<a href="/blog">← All Posts</a>
-				</div>
-				<form class="my-form flex justify-center gap-2">
-					<input class="px-4 py-2 flex-grow rounded border border-gray-200" type="email" pattern=".+@.+" />
-					<button class="text-white border border-solid border-black px-4 py-2 talk-link rounded bg-black hover:bg-[rgba(0,0,0,0)] hover:text-black transition-all" type="submit">Subscribe</button>
+					</div>
+					<input class="my-form px-4 py-2 flex-grow rounded border border-gray-200" type="email" pattern=".+@.+" />
+					<button class="submit text-white border border-solid border-black px-4 py-2 talk-link rounded bg-black hover:bg-[rgba(0,0,0,0)] hover:text-black transition-all" type="submit">Subscribe</button>
+					<div class="my-email text-right">
+						<a href="mailto:blog@robertboyd.dev">Email me!</a>
+					</div>
 				</form>
-				<div class="my-copyright text-center sm:hidden">
-					© Robert Boyd III
-				</div>
-				<div class="my-email text-right">
-					<a href="mailto:blog@robertboyd.dev">Email me!</a>
-				</div>
 			</div>
 		</main>
 	</div>
 </BaseLayout>
 
 <style>
+.my-form {
+	grid-area: center-left;
+}
+.my-back {
+	grid-area: left;
+}
+.submit {
+	grid-area: center-right;
+}
+.my-email {
+	grid-area: right;
+}
+.my-grid {
+	display: grid;
+	align-items: center;
+	gap: 1rem;
+	grid-template-columns: auto 1fr auto auto;
+	grid-template-areas: "left center-left center-right right";
+}
 @media (max-width: 639px) {
 	.my-form {
 		grid-area: top;
@@ -69,13 +85,17 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 	.my-back {
 		grid-area: left;
 	}
+	.submit {
+		grid-area: center;
+	}
 	.my-email {
 		grid-area: right;
 	}
-	.my-copyright {
-		grid-area: center;
-	}
 	.my-grid {
+		align-items: center;
+		gap: 1rem;
+		grid-template-columns: 1fr auto 1fr;
+		grid-template-rows: auto auto;
 		grid-template-areas:
 			"top top top"
 			"left center right";
