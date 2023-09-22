@@ -7,10 +7,12 @@ const output = document.getElementById("output");
 const params = new URLSearchParams(window.location.search);
 const uuid = params.get("uuid");
 if (uuid) {
-  const { result } = await fetch(
-    `https://email-worker.rob-3.workers.dev/verifyEmail?uuid=${uuid}`,
-  );
-  output.innerHTML = result;
+  (async () => {
+    const { result } = await fetch(
+      `https://email-worker.rob-3.workers.dev/verify-email?uuid=${uuid}`,
+    );
+    output.innerHTML = result;
+  })();
 }
 </script>
 
@@ -19,7 +21,7 @@ if (uuid) {
     <main
       class="w-full rounded bg-slate-100 px-4 py-2 text-center sm:px-8 sm:py-6 md:max-w-3xl"
     >
-      <div id="output"></div>
+      <div id="output">Loading...</div>
     </main>
   </div>
 </BaseLayout>
