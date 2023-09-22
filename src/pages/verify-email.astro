@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     (async () => {
       const { result } = await fetch(
         `https://email-worker.rob-3.workers.dev/verify-email?uuid=${uuid}`,
-      );
+      ).then((res) => res.json());
       output.innerHTML = result;
     })();
   }
