@@ -3,6 +3,8 @@ title: "The Right Default Branch Name"
 description: "Lorem ipsum dolor sit amet"
 pubDate: "Sun May 28 2023 19:28"
 ---
+import { Image } from "astro:assets";
+import records from "../../assets/pexels-robin-mcpherson-908965.jpeg";
 
 `master`, `main`, `trunk`, `develop` -- there are many names people use for
 their default branch. Which should you choose?
@@ -20,15 +22,14 @@ in recent times, [some](https://groups.google.com/a/chromium.org/g/chromium-dev/
 major projects started changing their default branch name
 to avoid the master-slave terminology.
 
-![Records](../../assets/pexels-robin-mcpherson-908965.jpeg)
+<p>
+<Image src={records} alt="Records" quality="low" />
+</p>
 
 <aside>
 I personally always thought Git was referring to a master copy (as in
 "remastering"), which fits my mental model of Git very well. However, the
-term is taken from an older version control system, Bitkeeper, where
-<a href="https://mail.gnome.org/archives/desktop-devel-list/2019-May/msg00066.html">
-it did refer to a master-slave relationship.
-</a>
+term is taken from an older version control system, Bitkeeper, where <a href="https://mail.gnome.org/archives/desktop-devel-list/2019-May/msg00066.html"> it did refer to a master-slave relationship. </a>
 </aside>
 
 While there were some flame wars about whether this change was really worth the
@@ -78,10 +79,11 @@ which is a good read and a classic work about Git workflows.[^gitflow]
         <img 
             src="/atlassian-gitflow.svg"
             alt="Gitflow, including a main branch and develop branch"
-        >
+        />
     </a>
     <figcaption>
-        <p class="text-xs">By
+        <p class="text-xs">
+            By
             <a href="https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow">
                 Atlassian
             </a>
