@@ -45,14 +45,19 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
         <slot />
       </article>
       <div class="mt-6 items-center">
-        <form class="my-grid">
+        <form
+          class="my-grid"
+          action="https://email-worker.rob-3.workers.dev/subscribeform"
+          method="post"
+          name="email"
+        >
           <div class="my-back">
             <a href="/blog">← All Posts</a>
           </div>
           <input
-            class="my-form flex-grow rounded border border-gray-200 px-4 py-2"
+            class="my-form flex-grow rounded border border-gray-200 px-4 py-2 transition-all invalid:border-red-500"
             type="email"
-            pattern=".+@.+"
+            name="email"
           />
           <button
             class="submit talk-link rounded border border-solid border-black bg-black px-4 py-2 text-white transition-all hover:bg-[rgba(0,0,0,0)] hover:text-black"
