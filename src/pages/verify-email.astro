@@ -3,17 +3,19 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <script defer>
-const output = document.getElementById("output");
-const params = new URLSearchParams(window.location.search);
-const uuid = params.get("uuid");
-if (uuid) {
-  (async () => {
-    const { result } = await fetch(
-      `https://email-worker.rob-3.workers.dev/verify-email?uuid=${uuid}`,
-    );
-    output.innerHTML = result;
-  })();
-}
+document.addEventListener("DOMContentLoaded", () => {
+  const output = document.getElementById("output");
+  const params = new URLSearchParams(window.location.search);
+  const uuid = params.get("uuid");
+  if (uuid) {
+    (async () => {
+      const { result } = await fetch(
+        `https://email-worker.rob-3.workers.dev/verify-email?uuid=${uuid}`,
+      );
+      output.innerHTML = result;
+    })();
+  }
+});
 </script>
 
 <BaseLayout title="Verify your email">
