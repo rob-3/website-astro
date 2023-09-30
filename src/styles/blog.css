@@ -6,6 +6,10 @@
   --black: hsl(230 40% 10%);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 p {
   margin: 1em 0;
 }
