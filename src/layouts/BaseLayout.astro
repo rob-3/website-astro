@@ -7,7 +7,7 @@ const { title, description } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="en" class="bg-[#A3C3D9] bg-cover bg-center bg-fixed bg-[url('/svg-path-mobile.svg')] md:bg-[url('/svg-path.svg')]">
+<html lang="en" class="bg-[#A3C3D9] bg-cover bg-center bg-fixed">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
@@ -15,7 +15,7 @@ const { title, description } = Astro.props;
 		<ViewTransitions />
 	</head>
 	<body>
-		<div class="flex flex-col min-h-[100dvh]">
+		<div class="arg flex flex-col min-h-[100dvh]">
 			<slot />
 			<footer class="flex-grow items-end mb-8 flex justify-center gap-16">
 				<a
@@ -56,3 +56,40 @@ const { title, description } = Astro.props;
 		</div>
 	</body>
 </html>
+
+<style>
+html::before {
+	content: "";
+	position: fixed;
+	left: 0;
+	right: 0;
+	z-index: -1;
+	display: block;
+	background: url("/svg-path.svg");
+	background-size: cover;
+	width: 100%;
+	height: 100%;
+	animation: 250ms ease-in-out 0s 1 fadeIn;
+}
+.arg {
+	animation: 250ms ease-in-out 0s 1 slideInFromBottom;
+}
+@keyframes slideInFromBottom {
+	0% {
+		transform: translateY(5px);
+		opacity: 0;
+	}
+	100% {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+</style>
