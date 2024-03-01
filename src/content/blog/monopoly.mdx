@@ -1,0 +1,230 @@
+---
+title: "Game Review: Monopoly"
+description: "Lorem ipsum dolor sit amet"
+pubDate: "Feb 29 2024 22:09"
+---
+import { Image } from "astro:assets";
+import taxes from "../../assets/taxes.png";
+import secondPrize from "../../assets/second-prize.webp";
+
+Monopoly -- a classic American board game. And a classic case study in poor
+game design.
+
+Many[^many] folks have been asking for my compiled list of reasons I dislike
+Monopoly, so here we are. Enjoy :)
+
+## Pieces and Packaging
+
+A big part of a game's appeal is its look and feel. I'm happy to report that
+Monopoly does fairly well in this category. Even among ubiquitous board games,
+Monopoly stands alone in the sheer quantity of crossovers with other brands.
+
+There's Star Wars Monopoly, National Parks Monopoly - my friend recently got
+Squishmallows Monopoly. If there's a version of Monopoly you want, there's
+a good chance it already exists.
+
+In terms of component quality, Monopoly is unremarkable. Most editions contain
+thin paper money, slightly less thin cards, plastic houses and hotels, and
+metal player pieces. The base edition has an unremarkable, utilitarian board
+design filled with text, property group colors, and empty spaces. For its time,
+it's a reasonable design, but modern game boards are typically a little more
+interesting to look at.
+
+One flaw I always notice (at least in the standard version of Monopoly) is that
+4 houses do not fit nicely on a single property color header.[^amidoingitwrong]
+
+## Instructions
+
+Monopoly has utilitarian instructions to match its game board. Again, the
+instructions are an artifact of their time. Reasonable care to handle edge
+cases is provided, but the length and lack of color or diagrams means that most
+players will never successfully read the rules.[^auction]
+
+I do appreciate that the instructions provide a variant for a shorter game. The
+designers clearly recognize that the early game is a slog, so players can
+follow the variant to spare themselves the pain of slowly buying up properties
+at the start of the game.
+
+## Gameplay
+
+Monopoly is fundamentally a **snowball game** -- getting ahead early provides
+a lasting advantage that can be difficult to overcome. The first player to
+establish a Monopoly, build 3 houses, and extract a huge rent is typically
+the significant favorite.
+
+Monopoly also leans toward **luck** rather than strategy. While Monopoly is not
+totally devoid of strategy, luck usually dominates the outcome. First-time
+players have a reasonable chance of winning once they grasp the basic rules.
+Among experienced players, the game is a crapshoot for who can acquire
+a Monopoly and get someone to land on it first. Careful strategic play is
+possible, but rarely enough to overcome poor dice luck.
+
+Quintessentially American, Monopoly is a great example of an **American-style game**.
+Gameplay is relatively interactive, and the game is largely zero-sum. Trading,
+auctioning, and extracting rent from other players are all cornerstones of the
+game, and solidly American-style mechanics.
+
+### Pointless bookkeeping
+
+One of the worst parts of Monopoly is the huge amount of pointless bookkeeping
+the game forces upon you. The best example of this is rent on unimproved
+properties. Outside of the railroads, utilities, and maybe Boardwalk, most
+unimproved properties charge a negligible amount of money when you land on
+them.
+
+The early game consists of looking up who owns a property, and
+then making change for $1 bills in order to pay someone $14, only for them to
+pay you back $22 a few rounds later. Unless you're trying to teach young
+children how to make change, these transactions are silly.[^irrelevant]
+
+Until monopolies are established and houses are built, the rent amounts are so
+small that they have no practical effect on the outcome of the game. In life,
+there are many activities that consist of bookkeeping drudgery, but they
+usually come with [a refund](https://www.irs.gov/how-to-file-your-taxes-step-by-step)
+or at least a cool game concept.
+
+<figure class="m-8">
+    <Image class="m-auto w-1/2" src={taxes} alt="Taxes" quality="low" />
+    <figcaption>
+        <p class="m-0 mt-1 md:text-base">Few life experiences can rival the early game monotony of Monopoly.</p>
+    </figcaption>
+</figure>
+
+### Few meaningful choices
+
+Monopoly is a game largely dependent on luck. This is not an issue in and of
+itself. However, Monopoly actively offers players choices, and then uses random
+chance to invalidate the outcome of those choices.
+
+One of the primary choices a player has is whether to purchase or auction off
+a property. In practice, this is a choice which is usually obvious. If it's
+early in the game or a purchase completes your Monopoly, buy. Otherwise,
+auction is likely a better option (to save money or just get the property at
+a lower price).
+
+The other major choice a player has in Monopoly is how and when to cut a deal
+to acquire a Monopoly. Only lucky players will acquire a full set without
+a trade; other players must trade with each other to have a chance at victory.
+
+Negotiating this key trade is usually the most interesting part of Monopoly.
+After the trade is complete, strategy generally converges on buying as many
+houses as you can afford and hoping other players land on you before you land
+on them.
+
+### Protracted Endgame
+
+Few players actually complete a game of Monopoly by rule, with resignations or
+abandonment of the game being common. And for good reason. 
+
+Monopoly has a long and ugly endgame. Once all or most of the properties
+are purchased and one or more monopolies emerge, the game degenerates into
+a tedious grind. Due to the way rent scales, it's generally optimal for players
+to first build up a single monopoly to at least 3 houses before building houses
+elsewhere. In many cases, players prefer to hold onto properties to prevent
+more monopolies for their opponents.
+
+This pattern sets up an endgame where most squares are irrelevant, either
+because they are mortgaged for cash or because they remain unimproved and
+charging negligible rent. Players often have to go around the board several
+times before anyone lands on a property that actually matters.
+
+When a player does land on an improved property, this typically destroys their
+winning chances. It's possible to survive landing on one improved property with
+cash on hand or enough unmortgaged properties, but once a player has to sell
+their own houses to pay off another player, their practical chances of winning
+go to zero, even if they're not actually eliminated.
+
+The result is an endgame that snowballs in favor of the player most ahead, and
+yet often drags on well past the point when the winner is all but determined.
+There's usually several rounds of "zombie" players going around the board,
+hoping against hope that they can somehow dodge the leader's properties for 10+
+rounds to collect enough cash to unmortgage properties, rebuild their houses
+and whittle down the leader's cash stockpile.
+
+A comeback is exceedingly rare, but the tiny chance of one usually adds
+significant time to the game, which is especially detrimental while other
+bankrupted players are sitting on the sidelines. It's not fun to move around
+the board waiting for your inevitable bankrupting, and it's not fun for players
+already bankrupted to watch.
+
+### Weak Mechanics
+
+Despite being a strategically simple game, Monopoly has several mechanics which
+add complexity to the design for no real gain.
+
+Hotels are one such mechanic.
+
+One theory is that hotels prevent players from reaching the hard cap on houses
+that can come into play. In my experience, though, starving other players of
+houses by staying on 4 houses on multiple properties rarely comes up or matters
+in a real game.
+
+Hotels also give a small discounts when drawing the repairs cards, but
+otherwise add no additional behavior, and work as a 5th house in the vast
+majority of cases.
+
+Community chest and chance are another example of complexity without cause. Why
+are there two separate piles of cards with random effects? Both can be either
+good or bad, and it's not as if players are able to choose which to draw from.
+
+The Chance and Community Chest cards are also criminally underused pieces of
+design space that could be so much more interesting without adding significant
+complexity.
+
+Instead, we get this:
+
+<figure class="m-8">
+    <Image class="m-auto w-1/2" src={secondPrize} alt="Second prize in a beauty contest" quality="high" />
+    <figcaption>
+        <p class="text-xs">Image credit: <a href="https://fiftyfourandahalf.com/2013/03/11/second-prize-in-a-beauty-contest/">https://fiftyfourandahalf.com/2013/03/11/second-prize-in-a-beauty-contest/</a></p>
+    </figcaption>
+</figure>
+
+The flavor is the most imaginative thing about these cards. Most cards simply
+make a player gain or lose a fixed amount of money from the bank.
+
+It's not hard to come up with some better card designs that would add
+interesting options to Monopoly. Here are a few:
+
+* Antitrust Law: Play this card to prevent the property group of your choice from being upgraded past 2 houses for the rest of the game. (Existing houses can stay)
+* House Construction: Play this to build a house or upgrade to a hotel for free.
+* Hostile Takeover: Play this card to choose an unimproved property owned by another player -- purchase that property from that player for twice the sticker price.
+* Business Acumen: Play this card to reroll a single die that you have just rolled. You must accept the new result.
+
+I think these designs make drawing a card much more interesting, and introduce
+noncash, nonproperty assets with ambiguous value. I can easily imagine a player
+negotiating to acquire these cards or selling them to a player who can better
+utilize them.
+
+The iconic "Get Out of Jail Free" card actually would do some work in this
+direction, but it is completely undermined by allowing players to pay $50 to
+get the same effect. "Get Out of Jail Free" is basically a $50 bill with an
+asterisk, when it could have been a unique and flavorful effect.
+
+## Conclusion
+
+If I never played Monopoly again, I wouldn't exactly be sad. It's not
+a uniformly terrible game -- clearly, it has captivated us for decades, or they
+wouldn't have made 1667 branded versions.[^1667] But it's a game where the fun
+parts are infrequent and brief, and the boring parts are the norm.
+
+It's too serious for a casual background game, and too casual for core board
+gamers. I never choose to pick up this game if I can avoid it.
+
+**Rating: 3/10**
+
+At least there are 1667 versions.
+
+[^many]: Read: more than one
+[^irrelevant]:
+    Even so, in a world of credit cards and instant bank transfers, making
+    change is an increasingly irrelevant skill.
+[^auction]:
+    I think this is a big reason why many people don't play with the auction --
+    they simply don't know that auctioning unsold properties is part of the
+    rules.
+[^amidoingitwrong]:
+    Maybe you're just not supposed to put the houses all on the color bar, but
+    that's how everyone I've played with does it.
+[^1667]:
+    https://monopoly.fandom.com/wiki/List_of_Monopoly_Games_(Board)
