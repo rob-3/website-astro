@@ -1,0 +1,212 @@
+---
+title: "Writing Simpler Functions"
+description: "Lorem ipsum dolor sit amet"
+pubDate: "March 31 2024 23:19"
+---
+
+Simple code is better than complex code.[^simple-made-easy-plug] And yet
+I often come across functions that take me 20 minutes to understand that do
+nothing more than call two or three other helpers and combine their results.
+
+Why? Many functions end up spending more time dealing with side concerns than
+with achieving their actual goal.
+
+## Loops hiding in functions
+
+One example is some functions that take arrays as parameters and contain loops.
+
+I'm always suspicious of functions that take arrays as parameters. In many
+cases, these loops are better off lifted outside of the function.
+
+```ts
+// ❌ often worse
+const orders = [
+  { name: "Apples", price: 10 },
+  { name: "Oranges", price: 20 },
+  { name: "Bananas", price: 30 },
+];
+function computeTaxes(orders) {
+  const taxes = [];
+  for (const order of orders) {
+    taxes.push(order.price * 0.07);
+  }
+  return taxes;
+}
+const taxes = computeTaxes(orders);
+```
+
+Here's how this can be improved:
+
+```ts
+// ✅ usually better 
+const orders = [
+  { name: "Apples", price: 10 },
+  { name: "Oranges", price: 20 },
+  { name: "Bananas", price: 30 },
+];
+function computeTax(order) {
+  return order.price * 0.07;
+}
+
+// You can also use a loop if you prefer
+const taxes = orders.map(computeTax);
+```
+
+The second option is preferable because it creates a more general function that
+can be called on a single `Order` if necessary.
+
+If I have an `Order`, I shouldn't have to put it in an array to call `computeTax()`.
+
+This idea doesn't apply just to arrays, although array examples are the most
+common version in my experience. For languages with nullable types,
+promises/futures, and [other sorts of wrapped types](https://en.wikipedia.org/wiki/Functor_(functional_programming)), it is nearly
+always better to unwrap the type before operating on it.
+
+## Promises hiding in functions
+
+Promises as function arguments are also suspicious.
+
+```ts
+// ❌ often worse
+async function getFullEventName(eventPromise: Promise<Event>) {
+  const event = await eventPromise;
+  return event.title + ' via ' + event.source;
+}
+const eventPromise = getEventAsync();
+await getFullEventName(eventPromise);
+```
+<br />
+```ts
+// ✅ usually better 
+function getFullEventName(event: Event) {
+  return event.title + ' via ' + event.source;
+}
+const event = await getEventAsync();
+const eventName = getFullEventName(event);
+```
+
+The second option is preferable because it creates a more general function that
+can be called on a non-promise if necessary.
+
+If I have an `Event`, I shouldn't have to put it in a promise to call
+`getFullEventName()`.
+
+## Optionality hiding in functions
+
+Similarly, it's rarely right to pass something that could be null into
+a function.
+
+```ts
+// ❌ often worse
+function formatLogs(logs: string | null) {
+  if (logs === null) throw Error("logs is null!");
+  return [
+    "======= LOGS =======",
+    logs,
+    "===== END LOGS ====="
+  ].join("\n");
+}
+const logs: string | null = readFile("logs.txt");
+const formattedLogs = formatLogs(logs);
+```
+<br />
+```ts
+// ✅ usually better 
+function formatLogs(logs: string) {
+  return [
+    "======= LOGS =======",
+    logs,
+    "===== END LOGS ====="
+  ].join("\n");
+}
+const logs: string | null = readFile("logs.txt");
+if (logs === null) throw Error("file read failed!");
+const formattedLogs = formatLogs(logs);
+```
+
+> Note the more descriptive error message that is made possible by the structure
+> of the second example.
+
+Hopefully the pattern is becoming clear.[^functors] Moving unrelated details out of
+the helper simplifies the functions. This makes the helper functions more
+versatile and can have further refactoring benefits down the line.
+
+For example, you might be able to avoid redundant null checks in multiple
+helper functions by moving a null check closer to the variable's origin.[^null-checks]
+
+I also find that bugs are significantly easier to find in functions that are
+properly simplified.
+
+```ts
+function computeTaxes(orders) {
+  const taxes = [];
+  for (const order of orders) {
+    taxes.push(order.price * 00.7);
+  }
+  return taxes;
+}
+```
+<br />
+```ts
+function computeTax(order) {
+  return order.price * 00.7;
+}
+```
+
+Readability differences in key logic matter.
+
+## Exceptions
+
+Sometimes, for performance, it's better to compute in a batch style. In those
+cases, I favor the faster option. One common case is batch database inserts.
+
+The otherwise odd choice to take an array as a parameter suggests to the caller
+of the function to pass the entire data at once.
+
+```ts
+// ❌ often worse
+function ingestUpload({ name, data }) {
+  db.sql("INSERT INTO uploads VALUES (?, ?)", name, data);
+}
+// it's easy to forget to wrap this in a transaction
+for (const upload of uploads) {
+  ingestUpload(upload);
+}
+```
+With `ingestUploads()`, you can't forget to wrap your inserts in a transaction.
+```ts
+// ✅ usually better 
+function ingestUploads(uploads) {
+  db.sql("BEGIN TRANSACTION");
+  for (const { name, data } of uploads) {
+    db.sql("INSERT INTO uploads VALUES (?, ?)", name, data);
+  }
+  db.sql("END TRANSACTION");
+}
+ingestUploads(uploads);
+```
+
+And of course I'm sure there are other exceptions. But I see far more examples
+of people mistakenly cluttering otherwise simple functions _without_ good
+reason than of people writing nicer batch processing functions. Many folks have
+the wrong default.
+
+## Conclusion
+
+If you recognize the above antipatterns in your own code, refactor! This is one
+of those refactorings that should be a reflex, because it's a straightforward
+transformation that can have a big impact on the quality of the code.
+
+
+[^simple-made-easy-plug]:
+    https://www.youtube.com/watch?v=LKtk3HCgTa8
+[^null-checks]:
+    Granted, it's a lot easier to confidently remove null checks in languages
+    where the type system tracks nullability for you (TypeScript, Rust, Kotlin,
+    and others). But even in a language like C or Java, you can still reap
+    benefits like better branch prediction (and performance) from pushing those
+    null checks all the way to a variable's origin.
+[^functors]:
+    If the commonality between arrays, promises, and nullable values is new to
+    you, I encourage you to look into the concepts of functors and monads in
+    functional programming. The rabbit hole goes deeper than you may think...
