@@ -1,0 +1,264 @@
+---
+title: "Installable Web Apps In 2024"
+description: "Lorem ipsum dolor sit amet"
+pubDate: "May 1 2024 23:20"
+---
+
+Over the past year, I've led the [KnightLife](https://knightlife.fyi) project
+from inception to completion. It's an installable web app that gives users
+access to the most extensive database of events at the University of Central
+Florida. KnightLife taught me a lot, especially about web scraping Instagram
+and database schema design.
+
+However, today I want to talk about the state of installable web apps; also
+known as [progressive web apps](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps)
+or PWAs. KnightLife is a fully fledged installable web app—complete with push
+notifications and graceful degradation when users are offline.
+
+## The Good
+
+Why choose an installable web app? There are some really compelling advantages
+that, for us, mostly panned out.
+
+### One Codebase
+
+There was one primary reason we chose to make an installable web app: we wanted
+to avoid writing a separate web app, iOS app, and Android app. I'm happy to say
+that, in practice, this is a huge win for rapid development.
+
+It's hard to overstate how convenient it is to have a single codebase for all
+of your UIs and business logic. There was no need to rewrite data types across
+languages or reimplement UI widgets on different platforms. With a few
+responsive CSS properties, you can easily build a UI that looks good everywhere
+with just HTML, CSS, and JavaScript.
+
+I have experience with React Native, and the cross-platform UI development
+experience is better for installable web apps. React Native doesn't implement
+CSS exactly how it works in browsers,[^react-native-css] which is not a problem
+in an installable web app (your app _is_ a browser).
+
+We were able to build a nicer experience across all three platforms that we
+would've been able to build in the same amount of time by making three separate
+apps or by building a web app and a React Native or Flutter app.
+
+### No App Store
+
+I have limited experience publishing an app in the App Store or Google Play
+Store, but I know some people who seem cursed by Apple and Google with the
+issues they have publishing apps. Others seem to have had a smooth experience.
+Regardless, nothing beats the ease of pushing updates on the open web.
+
+We never had to worry that Google or Apple might decide to take down our app or
+otherwise stall updates in any way. We're able to push updates to the app
+within minutes and without any approvals from a company.
+
+There are no restrictions on the content we can put in the app. If we were to
+want to take payment details, we could store and process those however we
+choose. There's no 30% cut to pay to the platform owner. These things don't
+particuarly matter for our app, but could be game changers for some kinds of
+apps.
+
+One big advantage of installable web apps is that you can pretty easily set up
+preview deployments of branches or testing branches of the app up on a separate
+domain or subdomain of the main application. It's a lot easier to visit
+a testing URL than to install a testing version of an app. This really helped
+our efforts to review each others' features.
+
+## The Bad
+
+We had a good experience building KnightLife as an installable web app, but
+it's not all sunshine and roses. You have to recognize that you're swimming
+against the current in many ways compared to building traditional native apps.
+There are a lot of minor gaps in the experience that make it impossible to
+recommend without some reservations.
+
+### Animations
+
+There's no question that web apps lack the silky smooth animations that are
+possible with native apps. If you're going for a platform-native feel, you're
+also never going to be able to get fully there with a web app.
+
+But frankly, many apps don't _need_ that. My bank's app already has basically
+no animations anyway. There's nothing I need them to do that they couldn't do
+with an installable web app. Many of the apps I use don't need visual
+improvements; they need core functionality and stability problems fixed.
+
+But if you care about giving users the absolute best possible visual
+experience, I still think native apps are king.
+
+### Offline Support
+
+It's possible but tricky to implement offline support for installable web apps.
+You have to implement the caching yourself by writing a using a powerful but
+easy-to-misuse API that can intercept and modify all requests.
+
+We ran into an issue with SvelteKit where navigating to a new page while
+offline would implicitly block on a network request to refresh some data. This
+network request was not well documented, so it was somewhat difficult to work
+out exactly why things failed. The service worker APIs allow you to handle
+these cases, but documentation on how to do this properly doesn't really exist.
+
+With other frameworks you may have an easier time, but in any cases it's
+important to understand exactly how and when your data is being fetched in
+order to avoid flaky internet from breaking your app's navigation when offline.
+
+I used a custom network profile called Lie-Fi[^lie-fi] to help test the app in
+the presence of hostile network conditions (extremely high latency and low data
+transfer). Your worst enemy is not being offline, but being "online" but with
+no data actually transferring. I highly recommend creating your own Lie-Fi
+profile with high latency to see if things break when networks requests just
+hang forever instead of failing or succeeding.
+
+If you don't actually need your app to work offline, just assume you'll be
+online and avoid thinking about this entirely. It's not worth the pain in a lot
+of cases.
+
+### Persistent Storage
+
+The web platform lacks a persistent storage solution that checks all of the
+boxes. `localStorage` is perfect for little key-value blobs with limited
+writes, but it is has a heavily capped capacity. `IndexedDB` has high capacity,
+but the API is unusable without [Dexie](https://dexie.org/) and it doesn't support SQL or
+have great performance. There's an official WebAssembly build of SQLite that is
+extremely impressive work, but it is still immature and suffers from many
+limitations.[^headers]
+
+I think that the WebAssembly build of SQLite and the browser APIs it builds on
+is probably the long-term path forward if installable web apps become more
+popular. SQLite is a great storage solution that is widely used in native apps,
+so it's fitting to bring it to the browser too. However, it will be at least
+a couple years until this project will mature to the point I would feel
+comfortable recommending it.
+
+We decided to use IndexedDB for data storage and an in-memory database called
+[Orama](https://askorama.ai/) for full text search.
+
+### No App Store
+
+App stores are the de facto way to distribute apps to users. It's difficult to
+get users to go through the tricky menu prompt to save a web app to their home
+screen compared to sending them a link to your app store listing.[^trying-it]
+If your requirement is solely that the app can have an icon on the home screen
+though, it is entirely possible on both iOS and Android.
+
+What isn't supported is directly prompting the user to install the app. Chrome
+on Android automatically prompts the user directly to install, while Safari on
+iOS disguises the option as bookmarking.
+
+Regardless, users don't understand what it means to install a web app. If you
+need users to install the app for important functionality, you'll likely want
+to create your own set of instructions on a page in your site.
+
+## The Ugly
+
+There are some unfortunate realities of building installable web apps that
+probably won't change. These may be dealbreakers for some projects.
+
+### Uncertain Future
+
+It's not clear that the future of installable web apps will be bigger and
+better. They originally came about through efforts from the Google Chrome team
+to build a web platform that competed with regular mobile apps, but there isn't
+really an entity that is actively pushing for their adoption or development.
+
+It's not hard to imagine a future where Google goes all-in on native apps and
+lets the PWA APIs slowly dwindle into obscurity. Installable web apps are
+clearly competition to the app stores of Apple and Google, so it's not exactly
+a strategic priority for these companies to keep them working or make them
+better.
+
+Firefox desktop [dropped
+support](https://9to5google.com/2021/01/27/firefox-discontinues-work-pwa-desktop/)
+for the installability feature, seemingly because people just weren't using it.
+
+[Apple broke installable web apps in the
+EU](https://www.theverge.com/2024/2/14/24072764/apple-progressive-web-apps-eu-ios-17-4).
+While this decision was ultimately reversed after public and EU backlash, drama
+around the core technologies in your app is not the kind of thing you want to see.
+
+With native apps, these sort of stunts would be unthinkable. The incentives
+line up for Apple and Google to continue to make developing native apps better
+every year.
+
+For now, installable web apps continue to live on, but I'm less confident about
+where they will be in 5 or 10 years. It's a good bet that the basic APIs will
+continue to work, since many regular web apps also depend on them, but the
+installability APIs and native platform integrations like push notifications
+are on much shakier ground.
+
+### Ecosystem isn't there
+
+[MDN](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps)
+and [web.dev](https://web.dev/explore/progressive-web-apps) have some really
+good pages, but you're often relying on a blog post from 2018 or your intuition
+when building beyond the toy examples they provide.
+
+Compared to building an actual native app, you're much more on your own for
+debugging strange browser behavior around service workers or working out how an
+obscure API is meant to be used.
+
+Google has a library called [Workbox](https://github.com/GoogleChrome/workbox)
+for building installable web apps, but my impression is that it is pretty
+opinionated dependency that might not really be necessary for most apps. We
+started by trying to use it, but ran into issues we couldn't solve because we
+didn't have a good mental model of what it was actually doing under the hood.
+
+In terms of frameworks, most of the popular JavaScript frameworks don't
+directly support installable web apps. Getting a build/development
+configuration that works for testing service worker changes is nontrivial.
+
+We ran into some frustrating issues getting [vite-plugin-pwa](https://github.com/vite-pwa/vite-plugin-pwa)
+working well in our project and ended up just building service worker support
+ourselves.
+
+### Lack of Polish
+
+It's clear that installable web apps aren't widely used. There many minor
+limitations and immersion breaks. [You can't easily change the theme color of
+the app](https://github.com/w3c/manifest/issues/975) between light and dark
+mode. I noticed on my Pixel that going back from the root page briefly shows
+a blank Chrome tab while closing the app. On MacOS, closing the underlying
+browser closes instances of installed web apps that use that browser under the
+hood.
+
+All of these things remind users that installable web apps aren't really native
+apps, and reflect poorly on the overall experience.
+
+## Conclusion
+
+Even so, I still think the development advantages of installable web apps are
+worth tolerating these issues in a lot of cases. For apps that don't need core
+native functionality, they are a refreshing alternative with many concrete
+advantages. The majority of APIs work well across browsers, even Safari on iOS.
+
+If you're considering building a new application that doesn't need the the app
+stores and you can tolerate some of the limitations above, I would give
+installable web apps a shot. You might be surprised just how far they can go.
+
+[^react-native-css]:
+	https://reactnative.dev/docs/style#known-issues. When I last used React
+	Native a few years back, I often found myself running into minor
+	differences in how React Native rendered CSS across iOS and Android.
+	It was nothing that couldn't be worked around, but nevertheless I find that
+	web browsers render more consistently across platforms than React Native.
+[^lie-fi]:
+	[As coined by Jake
+	Archibald](https://youtu.be/cmGr0RszHc8?si=XDSVFHknR8hWy_K3&t=1474).
+	I created a custom network profile in Chrome with massive latency and found
+	it useful for ensuring the app handled navigations and caching correctly
+	without blocking on network requests.
+[^trying-it]:
+	I will say that it is a lot easier to get someone to try your application
+	by just visiting the URL in their browser on their phone. Installing to
+	home screen is where you lose most people, but a URL to the live app is
+	more accessible than anything you have to manually download.
+[^headers]:
+	In particular, you have to set some [obscure
+	headers](https://github.com/sqlite/sqlite-wasm?tab=readme-ov-file#in-a-wrapped-worker-with-opfs-if-available)
+	in order to get it to run at all. I also found that the TypeScript typings
+	were missing entirely for a module I wanted to use, though marking
+	everything as `any` and following the docs did work.
+
+	Another issue with WebAssembly SQLite is that it adds a 400k binary to your
+	site. For heavier apps, this probably isn't much of a concern at all, but
+	it can be a pretty big addition to the bundle for more lightweight sites.
