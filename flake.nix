@@ -21,7 +21,7 @@
           inherit version;
           src = ./.;
 
-          npmDepsHash = "sha256-fHXdWyRrys1EXdb7ovuavv4hoJRwF4Mtv34oKW3MNVw=";
+          npmDepsHash = "sha256-FJta/3otgip4gcoUyhX3UVCWrX54E8ntHqEk8mhobPU=";
 
           installPhase = ''
             runHook preInstall
