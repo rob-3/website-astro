@@ -2430,11 +2430,3 @@ export const LINKS = {
   github: "https://github.com/rob-3",
   linkedin: "https://linkedin.com/in/robertboyd3",
 } as const;
-export const REPOS = [
-  "rob-3/steel-lang",
-  "poop-team/daydream",
-  "rob-3/morgan-and-morgan-2023",
-  "rob-3/codereview",
-  //"rob-3/website-astro",
-  "rob-3/resume",
-];
